@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function(){
+            $('#btn').click(function(){
+                alert(1)
+                $.ajax({
+                    'url': '/ajax_handle',
+                    'dataType': 'json',
+                    'async': false,
+                }).success(function(data){
+                    alert(2)
+                    if(data.res == 1){
+                        $("#message").show()
+                        $("#message").html("tip")
+                    }
+                })
+                alert(3)
+            })
+        })
+    </script>
+    <style>
+        #message{
+            display: none;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <input id="btn" type="button" value="ajaxrequest">    
+    <div id="message"></div>
+</body>
+</html>

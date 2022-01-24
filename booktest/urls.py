@@ -1,0 +1,38 @@
+from unicodedata import name
+from booktest import views
+from django.conf.urls import include, url
+
+urlpatterns = [
+    url(r'^index$', views.index, name='index'),
+    url(r'^index2$', views.index2),
+    url(r'^session_set$', views.session_set),
+    url(r'^session_get$', views.session_get),
+    url(r'^temp_var$', views.temp_var),
+    url(r'^temp_tags$', views.temp_tags),
+    url(r'^temp_filter$', views.temp_filter),
+    url(r'^temp_inherit$', views.temp_inherit),
+    url(r'^html_escape$', views.html_escape),
+    url(r'^change_pwd$', views.change_pwd),
+    url(r'^url_reverse$', views.url_reverse),
+    url(r'^change_pwd_action$', views.change_pwd_action),
+    # url(r'^showarg(\d+)$', views.showarg),
+    url(r'^show_args(\d+)/(\d+)$', views.show_args, name='show_args'),
+    url(r'^show_kwargs(?P<c>\d+)/(?P<d>\d+)$', views.show_kwargs, name='show_kwargs'),
+    url(r'^showarg(?P<num>\d+)$', views.showarg),
+    url(r'^login$', views.login),
+    url(r'^login_check$', views.login_check),
+    url(r'^ajax$', views.ajax_test),
+    url(r'^ajax_handle$', views.ajax_handle),
+    url(r'^login_ajax$', views.login_ajax),
+    url(r'^ajax_check$', views.ajax_check),
+    url(r'^set_cookie$', views.set_cookie),
+    url(r'^get_cookie$', views.get_cookie),
+    url(r'^test_redirect$', views.test_redirect),
+    url(r'^static_test$', views.static_test),
+    url(r'^show_upload$', views.show_upload),
+    url(r'^upload_handle$', views.upload_handle),
+    url(r'^prov$', views.prov),
+    url(r'^city(\d+)$', views.city),
+    url(r'^areas$', views.areas),
+    url(r'^show_area(?P<pindex>\d*)$', views.show_area),
+]

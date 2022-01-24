@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}father{% endblock title %}</title>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function(){
+            // 如果只获取信息,用get;涉及到信息修改,用post
+            $.get('/prov', function(data){
+                res = data.data
+                prov = $('#prov')
+                // for(i=0; i<res.length; i++){
+                //     id = res[i][0]
+                //     atitle = res[i][1]
+                //     option_str = '<option value="' + id + '">' + atitle + '</option>'
+                //     prov.append(option_str)
+                // }
+                $.each(res, function(index, item){
+                    id = item[0]
+                    atitle = item[1]
+                    option_str = '<option value="' + id + '">' + atitle + '</option>'
+                    prov.append(option_str)
+                })
+            })
+            // $.post('/post', {'dict': xx}, function(data){})
+
+            $('#prov').change(function(){
+                prov_id = $(this).val()
+                $.get('/city'+prov_id, function(data){
+                    res = data.data
+                    city = $('#city')
+                    city.empty().append('<option value="">---Province---</option>')
+                    block = $('#block')
+                    block.empty().append('<option value="">---block---</option>')
+                    $.each(res, function(index, item){
+                        id = item[0]
+                        atitle = item[1]
+                        option_str = '<option value="' + id + '">' + atitle + '</option>'
+                        city.append(option_str)
+                    })
+                })
+            })
+
+            $('#city ').change(function(){
+                city_id = $(this).val()
+                $.get('/city'+city_id, function(data){
+                    res = data.data
+                    block = $('#block')
+                    block.empty().append('<option value="">---block---</option>')
+                    $.each(res, function(index, item){
+                        id = item[0]
+                        atitle = item[1]
+                        option_str = '<option value="' + id + '">' + atitle + '</option>'
+                        block.append(option_str)
+                    })
+                })
+            })
+        })
+
+
+    </script>
+</head>
+<body>
+    <select name="" id="prov">
+        <option value="">---Province---</option>
+    </select>
+
+    <select name="" id="city">
+        <option value="">---City---</option>
+    </select>
+
+    <select name="" id="block">
+        <option value="">---block---</option>
+    </select>
+</body>
+</html>
